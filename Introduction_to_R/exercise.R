@@ -2,14 +2,14 @@ require("readxl")
 require("writexl")
 
 # Set working directory
-setwd("D:/Lecture/Introduction_to_energy_modeling/R/Introduction_to_R")
+setwd("D:/Proejct_GitHub/Intro2EnergyModeling_R/Introduction_to_R")
 
 
 
 # constant variable
 START_YEAR <- 2000
 END_YEAR <- 2015
-CONV_KGOE_TO_TOE <- 1/1000 # 1kg of oil equivalen= 1/1000 Ton of oil equivalent
+CONV_KGOE_TO_TOE <- 1/1000 # 1kg of oil equivalent= 1/1000 Ton of oil equivalent
 
 
 
@@ -35,20 +35,23 @@ pcEn <- getXlsxFile("Energy_Use", 1, 5) # energy use per capita (unit: kgoe per 
 pop <- getXlsxFile("Population", 1, 5) # population (unit: one person)
 
 
+
+# create a new data frame in which total energy use will be stored
+# length of columns (END_YEAR-START_YEAR+2): country.code, START_YEAR, ...., END_YEAR
+totalEn <- data.frame(matrix(0, ncol=END_YEAR-START_YEAR+2, nrow=nrow(pcEn)))
+colnames(totalEn) <- c("country.code", START_YEAR:END_YEAR) # set column names
+
 # get country code from pcEnergy data
 cntCodes <- unique(pcEn$`Country Code`)
-
-
-# create a new data frame which con
-totalEn <- data.frame(matrix(0, ncol=END_YEAR-START_YEAR+2, nrow=length(cntCodes)))
-colnames(totalEn) <- c("country.code", START_YEAR:END_YEAR)
-totalEn$country.code <- cntCodes # initialize country code
+totalEn$country.code <- unique(pcEn$`Country Code`) # initialize country code
 
 
 # compute total energy
 for(code in cntCodes){
   for (year in START_YEAR:END_YEAR) {
     
+    # we can't use number as a variable name
+    # so convert numeric value to character value.
     col_year <- as.character(year)
     
     pcEn_year <- pcEn[pcEn$`Country Code`== code, col_year]
