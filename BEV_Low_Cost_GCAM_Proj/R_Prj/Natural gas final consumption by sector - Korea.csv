@@ -1,0 +1,11 @@
+Source: IEA Gas Information 2020 https://www.iea.org/subscribe-to-data-services/natural-gas-statistics,,,,,,
+Documentation: https://iea.blob.core.windows.net/assets/ffe67268-37f8-4ea6-ae8e-43d841042484/Gas_Documentation.pdf,,,,,,
+This data is subject to the IEA's terms and conditions: https://www.iea.org/terms,,,,,,
+,,,,,,
+,Industry,Residential,Commercial and public services,Agriculture / forestry,Transport,Units
+1990,3391,21614,6319,3,0,TJ-gross
+1995,24808,124942,36214,9,0,TJ-gross
+2000,134005,289799,83997,911,0,TJ-gross
+2005,193894,389538,144033,1165,15066,TJ-gross
+2010,,,,,47603,
+2015,,,,,54152,
